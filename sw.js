@@ -1,5 +1,5 @@
 //Aqui el service worked
-self.addEventListener('fetch', event => {
+/**self.addEventListener('fetch', event => {
 
     if( event.request.url.includes('main.jpg')){
 
@@ -11,4 +11,22 @@ self.addEventListener('fetch', event => {
     }
 
 
+});
+
+**/
+self.addEventListener('fetch', event =>{
+    
+    event.respondWith(
+        fetch( event.request )
+            .then( respuesta => {
+                
+                if (respuesta.ok) {
+                    return respuesta;
+                }else{
+                    return fetch('img/main.jpg');
+                }
+
+            })
+
+    );
 });
